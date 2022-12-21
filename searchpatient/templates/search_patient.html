@@ -1,0 +1,28 @@
+{% extends 'base_search.html' %}
+
+
+{% block maincontent %}
+<div class="main_content">
+    <div class="search_bar">
+        <form action="{% url 'search_patient' %}" method="GET">
+            <input type="text" placeholder="Digite o termo de pesquisa" class="search_input" name="termo_pesquisa" style="width: 40vw;">
+            <button type="submit" class="btn btn-primary">Buscar</button>
+        </form>
+    </div>
+    <br>
+    <br>
+    <br>
+    <div class="result_bar" style="overflow-y: scroll;">
+
+        {% for patient in resultados %}
+        <div class="patient">
+            <a href="/search_patient/{{patient.3}}"><b><strong>{{patient.0}}:</strong></b></a>
+            <i><strong>Idade: </strong>{{patient.1}} anos,</i>
+            <i><strong>Documento: </strong>{{patient.2}},</i>
+            <i><strong>Código UUID: </strong> ({{patient.3}})</i>
+        </div>
+        {% endfor %}
+
+    </div>
+</div>
+{% endblock %}

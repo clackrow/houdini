@@ -1,0 +1,49 @@
+{% extends 'sec_base.html' %}
+
+
+
+{% block maincontent %}
+<div class="main_content">
+    <div class="title_box">
+        <h1 class="main_title">{{name}}</h1>
+    </div>
+    <div class="options" style="width: 90%; margin: auto; height: 50vh; margin-top: 20px;">
+        <div class="patient_info">
+            <p><strong>Código UUID: </strong>{{uuid}}
+            <br>
+            <strong>Data de nascimento: </strong>{{birth}}
+            <br>
+            <strong>CPF: </strong>{{cpf}}
+            <br>
+            <strong>RG: </strong>{{rg}}
+            <br>
+            <strong>Endereço: </strong>{{add}}
+            <br>
+            <strong>Telefone: </strong>{{phone}}
+            <form action="{% url 'edit_info' uuid %}" method="POST" id="edit_info">
+                {% csrf_token %}
+                {% if waiting_doc %}
+                <input type="checkbox" name="waiting_doc" id="waiting_doc" checked>
+                {% else %}
+                <input type="checkbox" name="waiting_doc">
+                {% endif %}
+                <label for="waiting_doc">Esperando consulta médica</label>
+                <br>
+                {% if waiting_nutri %}
+                <input type="checkbox" name="waiting_nutri" checked> Esperando consulta nutricional
+                {% else %}
+                <input type="checkbox" name="waiting_nutri"> Esperando consulta nutricional
+                {% endif %}
+                <br>
+                Horário da consulta: <input type="time" name="arrival_time" id="doc_appointment_time" value="13:30">
+            </form>
+        </div>
+        <div class="button_box" style="margin-top: 30px;">
+            <button type="submit" class="btn btn-success" form="edit_info">Salvar informações</button>
+            <a href="/sec/payments/{{uuid}}">
+                <button type="button" class="btn btn-primary">Ver tela de pagamento</button>
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends 'appointment_base.html' %}
+
+{% block maincontent %}
+<div class="main_content" style="min-width: 250px; min-height: 430px;">
+    <div class="title_box">
+        <strong>Paciente: {{name}}</strong>
+        <br>
+        <span><strong>Idade:</strong> {{age}}</span>
+        <br>
+        <span><strong>Motivo da consulta: </strong>{{appointment_reason}}</span>
+        <br>
+    </div>
+    <br>
+    <div class="appointment_form">
+        <form action="{% url 'saveappointment' uuid %}" method="POST">
+            {% csrf_token %}
+            <textarea name="new_appointment" cols="30" rows="10" placeholder="Digite a consulta aqui"></textarea>
+            <button type="submit" onclick="return confirm('Confirmar e salvar?')" class="btn btn-success">Salvar</button>
+            <a href="/search_patient/{{uuid}}">
+                <button type="button" class="btn btn-primary">Ver prontuário</button>
+            </a>
+        </form>
+        
+        
+    </div>  
+</div>
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+
+{% block maincontent %}
+<div class="main_content" style="min-height: 390px; min-width: 300px;">
+    <div class="title_box">
+        <h3>Sala de espera</h3>
+    </div>
+    <br>
+    <br>
+    
+    <div class="workplace_info" style='position: relative; margin-top: -40px; font-size: small;'>
+        <!-- <i>Local de atendimento: {{workplace}}</i> -->
+        <strong>Local de atendimento: </strong><i style="background-color: rgb(176, 223, 255); border-radius: 5px; padding: 5px;">{{workplace}}</i>
+        <strong>Profissional: </strong><i style="background-color: rgb(255, 170, 170); border-radius: 5px; padding: 5px;">{{professional}}</i>
+    </div>
+
+    
+    <div class="waiting_room">
+
+        {% for item in patients %}
+        <div class="single_patient" style="font-size: small;">
+            <div class="single_patient_main_info" style="height: 85px; min-height: 85px; min-width: 520px;">
+                <strong>{{item.0}}</strong>
+                <br>
+                <i>Idade: {{item.1}}</i>
+                <br>
+                <i>Horário de chegada: {{item.3}}</i>
+                <br>
+                <br>
+            
+                <a href="/appointment/{{item.2}}">
+                    <button type="button" class="btn btn-success" style="height: 25px; font-size: small; margin-top: -30px;">Iniciar atendimento</button>
+                </a>                        
+                <a href="/search_patient/{{item.2}}?professional=doc">
+                    <button type="button" class="btn btn-primary" style="height: 25px; font-size: small; margin-top: -30px;">Ver prontuário</button>
+                </a>
+            </div>
+            <div class="patient_reason">
+                <strong>Motivo da consulta:</strong>
+                <p>{{item.4}}</p>
+            </div>                
+        </div>
+        <br>
+        <br>
+        {% endfor %}
+
+    </div>
+</div>
+{% endblock %}

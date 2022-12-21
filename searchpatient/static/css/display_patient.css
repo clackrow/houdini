@@ -1,0 +1,36 @@
+body {
+    background: url('background.png');
+    font-family: "Open+Sans", sans-serif;
+    overflow-x: hidden;
+    background-size: 100%;
+}
+
+.main_content {
+    background-color: white;
+    width: 80%;
+    height: 70vh;
+    margin: auto;
+    margin-top: 70px;
+    border-radius: 10px;
+}
+
+.main_title {
+    width: 90%;
+    margin: auto;
+    position: relative;
+    top: 20px;
+}
+
+.record {
+    background-color: rgb(237, 237, 237);
+    width: 90%;
+    margin: auto;
+    height: 35vh;
+    border-radius: 5px;
+    overflow-y: scroll;
+}
+
+hr {
+    width: 90%;
+}
+

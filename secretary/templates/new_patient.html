@@ -1,0 +1,34 @@
+{% extends 'sec_base.html' %}
+
+
+{% block maincontent %}
+<div class="main_content" style="min-height: 480px;">
+    <h2 class="title_box">Cadastrar paciente</h2>
+    <div class="main_form" style="background-color: rgb(237, 237, 237); width: 90%; margin: auto; height: 45vh; margin-top: 40px; border-radius: 5px;">
+        <form action="" method="POST">
+            {% csrf_token %}
+            <input type="text" name="first_name" placeholder="Nome" required>
+            <input type="text" name="last_name" placeholder="Sobrenome" required>
+            <select name="gender" id="">
+                <option value="">Masculino</option>
+                <option value="">Feminino</option>
+                <option value="">N/A</option>
+            </select>
+            <br>
+            <br>
+            <input type="text" name="rg" id="" placeholder="RG" required>
+            <input type="text" name="cpf" placeholder="CPF" required>
+            <input type="date" name="birth" id="" placeholder="Data de nascimento" required>
+            <br>
+            <br>
+            <input type="text" name="address" id="" placeholder="Endereço" style="width: 527px;" required>
+            <br>
+            <br>
+            <input type="tel" name="phone" id="" placeholder="Telefone" required maxlength="11" minlength="10">
+            <input type="email" name="mail" id="" placeholder="Email" required style="width: 334px;">
+            <br>
+            <button type="submit" class="btn btn-success" style="margin-top: 8vh;">Salvar paciente</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

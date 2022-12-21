@@ -1,0 +1,35 @@
+{% extends 'base_display.html' %}
+
+{% block maincontent %}
+<div class="main_content">
+    <div class="main_title">
+        <strong>{{name}}</strong>
+        <br>
+        <i><strong>Idade:</strong> {{age}}</i>
+        <br>
+        <i><strong>UUID:</strong> {{uuid}}</i>
+        <br>
+        <br>
+        <i>Ver prontuário: </i>
+        <form action="{% url 'display_patient' uuid%}" method="GET">
+            <select name="professional" id="">
+                <option value="doc">Médico</option>
+                <option value="nutri">Nutricionista</option>
+            </select>
+            <button type="submit" class="btn btn-secondary btn-sm">Filtrar</button>
+        </form>
+    </div>
+    <br>
+    <div class="record" style="padding: 20px;">
+        {% for item in med_rec %}
+            <strong><p>{{item.0}}:</p></strong>
+            <p>{{item.1}}</p>
+            <br>
+        {% endfor %}
+    </div>
+    
+</div>
+{% endblock %}
+
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/display_patient.css' %}">

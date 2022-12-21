@@ -1,0 +1,62 @@
+{% extends 'sec_base.html' %}
+
+
+
+{% block maincontent %}
+<div class="main_content">
+    <div class="title_box">
+        <h3>Sala de espera</h3>
+    </div>
+    <br>
+    <br>
+    
+    <div class="workplace_info" style="display: flex; position: relative; top: -20px; font-size: small; overflow-y: hidden;">
+        <!-- <i>Local de atendimento: {{workplace}}</i> -->
+        <strong>Local de atendimento: </strong><i style="background-color: aquamarine; border-radius: 5px; padding: 5px; top: -5px; position: relative; left: 0.5vw; max-height: 30px;">{{workplace}}</i>
+        <strong style="position: relative; left: 1vw;">Profissional: </strong><i style="background-color: rgb(255, 170, 170); border-radius: 5px; padding: 5px; top: -5px; position: relative; left: 2vw; max-height: 30px;">{{professional}}</i>
+        
+    </div>
+    <div class="dropdown" style="position: relative; width: 90%; margin: auto; top: -20px;">
+        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="height: 35px;">
+          Filtrar
+        </button>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="/sec/?professional=medico#">Médico</a></li>
+          <li><a class="dropdown-item" href="/sec/?professional=nutricionista#">Nutricionista</a></li>
+        </ul>
+    </div>
+    
+
+    
+    <div class="waiting_room" style="position: relative; top: 0px; font-size: small; height: 30vh;">
+
+        {% for item in patients %}
+        <div class="single_patient">
+            <div class="single_patient_main_info">
+                <strong>{{item.0}}</strong>
+                <br>
+                <i>Idade: {{item.1}}</i>
+                <br>
+                <i>Horário de chegada: {{item.3}}</i>
+                <br>
+                <br>
+
+                
+            </div>
+            <div class="patient_reason">
+                <strong>Motivo da consulta:</strong>
+                <p>{{item.4}}</p>
+            </div>                
+        </div>
+        <br>
+        <br>
+        {% endfor %}
+    </div>
+
+    <div class="sec_buttons" style="position: relative; width: 90%; margin: auto; margin-top: 20px; font-size: small;">
+        <a href="/sec/new_patient/">
+            <button type="button" class="btn btn-success" style="font-size: small;">Cadastrar novo paciente</button>
+        </a>
+    </div>
+</div>
+{% endblock %}
